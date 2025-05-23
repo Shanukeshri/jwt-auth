@@ -8,10 +8,10 @@ const router = express.Router()
 
 
 const accessToken = (payload)=>{
-    return jwt.sign(payload, process.env.Access_token_key , {expiresIn:'10m'})
+    return jwt.sign(payload, process.env.Access_token_key , {expiresIn:'8s'})
 }
 const refreshToken = (payload)=>{
-    return jwt.sign(payload, process.env.Refresh_token_key, {expiresIn:`${24*7}h`})
+    return jwt.sign(payload, process.env.Refresh_token_key, {expiresIn:`32s`})
 }
 
 router.post("/register",async (req , res) => {
