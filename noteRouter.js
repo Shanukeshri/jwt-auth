@@ -16,7 +16,7 @@ router.get("/",async (req, res) => {
 });
 
 router.post("/",async (req, res) => {
-
+  if(!req.body.note){return res.status(400).json({msg:"No note present to be added"})}
   newNote = new note({ note: req.body.note, username: req.username });
   await newNote.save();
   return res.status(200).json({ msg: "Note Added Successfully" });

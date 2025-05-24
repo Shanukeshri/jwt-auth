@@ -28,13 +28,13 @@ const authenticate = async (req, res, next) => {
       username: accessPayload.username,
     });
     if (accessPayload.tokenVersion !== userInstance.tokenVersion) {
-      return res.status(201).json({ msg: "Unauthorised" });
+      return res.status(401).json({ msg: "Unauthorised" });
     }
     req.username = accessPayload.username;
     return next();
   } catch (e) {
     if (e.name === "JsonWebTokenError") {
-      return res.status(201).json({ msg: "Unauthorised" });
+      return res.status(401).json({ msg: "Unauthorised" });
     }
     try {
       //refreshing access token
